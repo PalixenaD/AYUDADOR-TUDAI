@@ -29,6 +29,22 @@ switch ($params[0]) {
         $controller = new AlbumController();
         $controller->mostrarAlbum($id);
         break;
+
+   case 'artistas':
+         $controller = new ArtistaController();
+         $controller-> mostrarArtista();
+         break;
+
+   case 'artista'
+         $id = $params[1] ?? null;
+         $controller = new ArtistaController();
+         $controller->mostrarArtista($id);
+         break;
+         
+case 
+
+
+   
     case 'add':
         $controller = new IssuesController();
         $controller->add();
