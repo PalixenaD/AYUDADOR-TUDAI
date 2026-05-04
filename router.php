@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/app/controllers/Album.controller.php';
+require_once __DIR__ . '/app/controllers/Artista.controller.php
 
 define('BASE_URL', '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . '/');
 
@@ -41,9 +42,11 @@ switch ($params[0]) {
          $controller->mostrarArtista($id);
          break;
          
-case 
-
-
+   case 'albumsPorArtista'
+         $controller = new ArtistaController();
+         $controller->seleccionarArtista($params[1]);
+         break;
+         
    
     case 'add':
         $controller = new IssuesController();
