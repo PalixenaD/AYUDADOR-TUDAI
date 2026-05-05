@@ -4,13 +4,6 @@ require_once __DIR__ . '/app/controllers/Artista.controller.php
 
 define('BASE_URL', '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . '/');
 
-/**  TABLA DE RUTEO                             
- * /issues   ---> IssuesController::showAll();
- * /add      ---> IssuesController::add();
- * /delete ---> IssuesController::delete();
-   
- **/
-
 $action = 'home';
 
 if (!empty($_GET['action'])) {
@@ -44,7 +37,14 @@ switch ($params[0]) {
          
    case 'albumsPorArtista'
          $controller = new ArtistaController();
-         $controller->seleccionarArtista($params[1]);
+         $id = $params[1] ?? null;
+
+         if ($id === null) {
+             echo "Falta el id del artista";
+         break;
+         }
+
+         $controller->seleccionarArtista($id);
          break;
          
    
