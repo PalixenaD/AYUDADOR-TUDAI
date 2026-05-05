@@ -26,7 +26,7 @@ switch ($params[0]) {
 
    case 'artistas':
          $controller = new ArtistaController();
-         $controller-> mostrarArtista();
+         $controller-> mostrarArtistas();
          break;
 
    case 'artista'
