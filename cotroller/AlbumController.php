@@ -28,7 +28,7 @@ class AlbumController {
             return $this->errorView->renderError("El album no existe");
         }
 
-        $this->view->renderAlbum($Album);
+        $this->view->renderAlbum($album);
     }
 }
 
