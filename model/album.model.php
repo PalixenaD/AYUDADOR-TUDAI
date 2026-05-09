@@ -21,9 +21,9 @@ class AlbumModel {
         return $album;
     }
 
-     public function insert($nombre_album, $genero, $fecha_lanzamiento, $duracion_minutos, $cantidad_canciones, $id_artista) {
-        $query = $this->db->prepare('INSERT INTO `album`(`nombre_album`, `genero`, `fecha_lanzamiento`, `duracion_minutos`, ´cantidad_canciones´, ´id_artista´) VALUES (?,?,?,?,?,?)');
-        $query->execute([$nombre_album, $genero, $fecha_lanzamiento, $duracion_minutos, $cantidad_canciones, $id_artista]);
+     public function insert($nombre_album, $genero, $fecha_lanzamiento, $duracion_minutos, $cantidad_canciones, $imagen, $id_artista) {
+        $query = $this->db->prepare('INSERT INTO `album`(`nombre_album`, `genero`, `fecha_lanzamiento`, `duracion_minutos`, ´cantidad_canciones´, ´imagen´, ´id_artista´) VALUES (?,?,?,?,?,?)');
+        $query->execute([$nombre_album, $genero, $fecha_lanzamiento, $duracion_minutos, $cantidad_canciones, $imagen, $id_artista]);
         return $this->db->lastInsertId();
     }
 
@@ -33,9 +33,9 @@ class AlbumModel {
         return $this->db->rowCount();
     }
 
-    public function update($id_album, $nombre_album, $genero, $fecha_lanzamiento, $duracion_minutos, $cantidad_canciones, $id_artista) {
-        $query = $this->db->prepare('UPDATE `album` SET `nombre_album`=?,`genero`=?,`fecha_lanzamiento`=?,`duracion_minutos`=?,´cantidad_canciones´=?,´id_artista´=? WHERE id_album = ?');
-        $query->execute([$nombre_album, $genero, $fecha_lanzamiento, $duracion_minutos, $cantidad_canciones, $id_artista]);
+    public function update($id_album, $nombre_album, $genero, $fecha_lanzamiento, $duracion_minutos, $cantidad_canciones, $imagen, $id_artista) {
+        $query = $this->db->prepare('UPDATE `album` SET `nombre_album`=?,`genero`=?,`fecha_lanzamiento`=?,`duracion_minutos`=?,´cantidad_canciones´=?,´imagen´=?,´id_artista´=? WHERE id_album = ?');
+        $query->execute([$nombre_album, $genero, $fecha_lanzamiento, $duracion_minutos, $cantidad_canciones, $imagen, $id_artista]);
         return $this->db->rowCount();
     }    
 }
