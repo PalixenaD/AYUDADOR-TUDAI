@@ -1,7 +1,7 @@
 <?php
 
 class ArtistaView {
-    public function renderArtistaS($artistas) {
+    public function renderArtistas($artistas) {
         require_once  'Views/templates/SeleccionList.phtml';
     }
 
