@@ -19,19 +19,6 @@ class ArtistaController {
       $this->view->renderArtistas($artistas);
     }
 
-
-   public function  mostrarArtista() {
-       $artista = $this->model->get($id);
-     
-  if ($artista === null) {
-            return $this->errorView->renderError("El artista no esta disponible");
-        }
-
-        $this->view->renderArtista($artista);
-    }
-
-
-
       public function seleccionarArtista($id) {
         $albumes = $this->model->get($id);
 
@@ -41,7 +28,38 @@ class ArtistaController {
    
         $this->view->showAlbumsporArtista($albumes);
     }
-      
+
+ public function addArtista($req) {       
+        // valida la entrada de usuario
+        if (
+            !isset($_POST['nombre_artista']) || empty($_POST['nombre_artista']) ||
+            !isset($_POST['fecha_nacimiento']) || empty($_POST['fecha_nacimiento']) ||
+            !isset($_POST['fecha_fallecimiento']) || empty($_POST['fecha_fallecimiento']) ||
+            !isset($_POST['lugar_origen']) || empty($_POST['lugar_origen']) ||
+            !isset($_POST['type']) || empty($_POST['type'])
+        ) {
+            return $this->errorView->renderError("Por favor, complete todos los campos.");
+        }
+
+
+        $nombre_artista = $_POST['nombre_artista'];
+        $fecha_nacimiento= $_POST['fecha_nacimiento'];
+        $fecha_fallecimiento = $_POST['fecha_fallecimiento'];
+         $lugar_origen = $_POST['lugar_origen'];
+        $type = $_POST['type'];
+        $status = 'TODO';
+
+  // inserta la nueva issue en la DB
+        $id = $this->model->insert( $nombre_artista,  $fecha_nacimiento,$fecha_fallecimiento,$lugar_origen  $type, $status);
+
+        if (empty($id)) {
+            return $this->errorView->renderError("Error al agregar la artista. Intente nuevamente.");
+        }
+        
+        // redirige a la lista de issues
+        header("Location: " . BASE_URL );        
+    }
+        
     }
 
 
