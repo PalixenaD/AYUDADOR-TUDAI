@@ -1,6 +1,11 @@
 <?php
 require_once __DIR__ . '/app/controllers/Album.controller.php';
-require_once __DIR__ . '/app/controllers/Artista.controller.php
+require_once __DIR__ . '/app/controllers/Artista.controller.php';
+
+require_once __DIR__ . '/app/middlewares/session.middleware.php';
+require_once __DIR__ . '/app/middlewares/guard.middleware.php';
+
+session_start();
 
 define('BASE_URL', '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . '/');
 
@@ -12,27 +17,24 @@ if (!empty($_GET['action'])) {
 
 $params = explode('/', $action);
 
+$req = new StdClass();
+$req = (new SessionMiddleware())->run($req);
+
 switch ($params[0]) {
     case 'home':
         $controller = new AlbumController();
-        $controller->home();
+        $controller->home($req);
         break;
 
    case 'album':
         $id = $params[1] ?? null;
         $controller = new AlbumController();
-        $controller->mostrarAlbum($id);
+        $controller->mostrarAlbum($req, $id);
         break;
 
    case 'artistas':
          $controller = new ArtistaController();
          $controller-> mostrarArtistas();
-         break;
-
-   case 'artista'
-         $id = $params[1] ?? null;
-         $controller = new ArtistaController();
-         $controller->mostrarArtista($id);
          break;
          
    case 'albumsPorArtista'
