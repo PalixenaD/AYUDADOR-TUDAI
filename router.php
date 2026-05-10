@@ -49,16 +49,27 @@ switch ($params[0]) {
          $controller->seleccionarArtista($id);
          break;
          
-   
-    case 'add':
-        $controller = new IssuesController();
-        $controller->add();
+         
+    //PURA CACAAAAA
+    case 'addArtista':
+        $req = (new GuardMiddleware())->run($req);
+        $controller = new ArtistaController();
+        $controller->addArtista();
         break;
     
-    case 'delete':
-        $controller = new IssuesController();
-        $controller->delete($params[1]);
+    case 'deleteArista':
+        $req = (new GuardMiddleware())->run($req);
+        $controller = new ArtistaController();
+        $req->id = $params[1];
+        $controller->deleteArista($req);
         break;
+
+    case 'editArtista':
+        $req = (new GuardMiddleware())->run($req);
+        $controller = new ArtistaController();
+        $controller->editArtistaArtista();
+        break;
+
 
     default:
         echo '404 error';
