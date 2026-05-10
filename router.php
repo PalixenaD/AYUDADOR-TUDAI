@@ -54,20 +54,20 @@ switch ($params[0]) {
     case 'addArtista':
         $req = (new GuardMiddleware())->run($req);
         $controller = new ArtistaController();
-        $controller->addArtista();
+        $controller->addArtista($req);
         break;
     
-    case 'deleteArista':
+    case 'deleteArtista':
         $req = (new GuardMiddleware())->run($req);
         $controller = new ArtistaController();
         $req->id = $params[1];
-        $controller->deleteArista($req);
+        $controller->deleteArtista($req);
         break;
 
     case 'editArtista':
         $req = (new GuardMiddleware())->run($req);
         $controller = new ArtistaController();
-        $controller->editArtistaArtista();
+        $controller->editArtista($req);
         break;
 
 
