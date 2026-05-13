@@ -1,7 +1,7 @@
 <?php
-require_once __DIR__ . '/app/controllers/Album.controller.php';
-require_once __DIR__ . '/app/controllers/Artista.controller.php';
-require_once __DIR__ . '/app/view/Render.Error.php';
+require_once __DIR__ . '/app/controllers/album.controller.php';
+require_once __DIR__ . '/app/controllers/artista.controller.php';
+require_once __DIR__ . '/app/view/error.view.php';
 require_once __DIR__ . '/app/middlewares/session.middleware.php';
 require_once __DIR__ . '/app/middlewares/guard.middleware.php';
 
@@ -41,7 +41,7 @@ switch ($params[0]) {
          $req->id = $params[1] ?? null;
     
          if ($req->id === null) {
-           return $this->view->renderError("Falta el id del artista");
+           return $this->errorView->renderError("Falta el id del artista");
          break;
          }
     
