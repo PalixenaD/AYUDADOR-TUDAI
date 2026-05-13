@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/app/controllers/Album.controller.php';
 require_once __DIR__ . '/app/controllers/Artista.controller.php';
-
+require_once __DIR__ . '/app/view/Render.Error.php';
 require_once __DIR__ . '/app/middlewares/session.middleware.php';
 require_once __DIR__ . '/app/middlewares/guard.middleware.php';
 
@@ -27,34 +27,84 @@ switch ($params[0]) {
         break;
 
    case 'album':
-        $id = $params[1] ?? null;
+        $req->id = $params[1] ?? null;
         $controller = new AlbumController();
-        $controller->mostrarAlbum($req, $id);
+        $controller->mostrarAlbum($req);
         break;
 
    case 'artistas':
          $controller = new ArtistaController();
-         $controller-> mostrarArtistas();
+         $controller-> mostrarArtistas($req);
          break;
          
-   case 'albumsPorArtista'
-         $controller = new ArtistaController();
-         $id = $params[1] ?? null;
-
-         if ($id === null) {
-             echo "Falta el id del artista";
+   case 'albumsPorArtista':
+         $req->id = $params[1] ?? null;
+    
+         if ($req->id === null) {
+           return $this->view->renderError("Falta el id del artista");
          break;
          }
-
-         $controller->seleccionarArtista($id);
+    
+         $controller = new ArtistaController();
+         $controller->seleccionarArtista($req);
          break;
-         
-         
-    //PURA CACAAAAA
+
+
+   case 'login_form':
+        $controller = new AuthController();
+        $controller->mostrarFormLogin($req);
+        break;
+
+   case 'login':
+        $controller = new AuthController();
+        $controller->login($req);
+        break;
+ 
+
+   case 'addAlbum':
+        $req = (new GuardMiddleware())->run($req);
+        $controller = new AlbumController();
+        $controller->addAlbum($req);
+        break;
+
+   case 'addFormAlbum':
+        $req = (new GuardMiddleware())->run($req);
+        $controller = new AlbumController();
+        $controller->mostrarFormAddAlbum($req);
+        break;
+    
+   case 'deleteAlbum':
+        $req = (new GuardMiddleware())->run($req);
+        $controller = new AlbumController();
+        $req->id = $params[1];
+        $controller->deleteAlbum($req);
+        break;
+
+   case 'editAlbum':
+        $req = (new GuardMiddleware())->run($req);
+        $controller = new AlbumController();
+        $req->id = $params[1];
+        $controller->editAlbum($req);
+        break;
+
+   case 'editFormAlbum':
+        $req = (new GuardMiddleware())->run($req);
+        $controller = new AlbumController();
+        $req->id = $params[1];
+        $controller->mostrarFormAlbumEdit($req);
+        break;
+
+
     case 'addArtista':
         $req = (new GuardMiddleware())->run($req);
         $controller = new ArtistaController();
         $controller->addArtista($req);
+        break;
+    
+    case 'addFormArtista':
+        $req = (new GuardMiddleware())->run($req);
+        $controller = new ArtistaController();
+        $controller->mostrarFormAddArtista($req);
         break;
     
     case 'deleteArtista':
@@ -67,9 +117,16 @@ switch ($params[0]) {
     case 'editArtista':
         $req = (new GuardMiddleware())->run($req);
         $controller = new ArtistaController();
+        $req->id = $params[1];
         $controller->editArtista($req);
         break;
-
+    
+    case 'editFormArtista':
+        $req = (new GuardMiddleware())->run($req);
+        $controller = new ArtistaController();
+        $req->id = $params[1];
+        $controller->mostrarFormArtistaEdit($req);
+        break;
 
     default:
         echo '404 error';
