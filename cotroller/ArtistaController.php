@@ -73,6 +73,42 @@ class ArtistaController {
         header("Location: " . BASE_URL );
     }
 
+
+ public function edditArtista($req) {       
+        // valida la entrada de usuario
+        if (
+            !isset($_POST['nombre_artista']) || empty($_POST['nombre_artista']) ||
+            !isset($_POST['fecha_nacimiento']) || empty($_POST['fecha_nacimiento']) ||
+            !isset($_POST['fecha_fallecimiento']) || empty($_POST['fecha_fallecimiento']) ||
+            !isset($_POST['lugar_origen']) || empty($_POST['lugar_origen']) ||
+            !isset($_POST['type']) || empty($_POST['type'])
+        ) {
+            return $this->errorView->renderError("Por favor, complete todos los campos.");
+        }
+
+
+        $id_artista = $_POST['id_artista'];
+        $nombre_artista = $_POST['nombre_artista'];
+        $fecha_nacimiento= $_POST['fecha_nacimiento'];
+        $fecha_fallecimiento = $_POST['fecha_fallecimiento'];
+         $lugar_origen = $_POST['lugar_origen'];
+        $type = $_POST['type'];
+        $status = 'TODO';
+
+  // inserta la nueva issue en la DB
+        $this = $this->model->edditArtista( $id_artista, $nombre_artista,  $fecha_nacimiento,$fecha_fallecimiento,$lugar_origen  $type, $status);
+
+        if (empty($id)) {
+            return $this->errorView->renderError("Error al agregar la artista. Intente nuevamente.");
+        }
+        
+        // redirige a la lista de issues
+        header("Location: " . BASE_URL );        
+    }
+
+
+
+
         
     }
 
