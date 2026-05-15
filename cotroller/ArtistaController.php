@@ -59,6 +59,20 @@ class ArtistaController {
         // redirige a la lista de issues
         header("Location: " . BASE_URL );        
     }
+
+          public function deleteArtista($req) {
+        $id = $req->id;
+        $task = $this->model->get($id);
+
+        if (!$task) {
+            return $this->errorView->renderError("No existe el artista con el id=$id");
+        }
+
+        $this->model->delete($id);
+
+        header("Location: " . BASE_URL );
+    }
+
         
     }
 
