@@ -21,11 +21,6 @@ class ArtistaController {
 
       public function seleccionarArtista($id) {
         $albumes = $this->model->get($id);
-
-          if (empty($albumes)) {
-            return $this->errorView->renderError("No hay albumes de este artista");
-        }
-   
         $this->view->showAlbumsporArtista($albumes);
     }
 
