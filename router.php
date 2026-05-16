@@ -39,11 +39,11 @@ switch ($params[0]) {
          
    case 'albumsPorArtista':
          $req->id = $params[1] ?? null;
+         $controller = new ArtistaController();
     
          if ($req->id === null) {
            return $this->errorView->renderError("No se encuentra ese artista");
          } else {
-           $controller = new ArtistaController();
            $controller->seleccionarArtista($req);
            break;
          }
