@@ -123,4 +123,4 @@ class AlbumController {
         $album = $this->model->get($id_album);
         $this->view->mostrarFormEdit($album);
     }
-
+}
