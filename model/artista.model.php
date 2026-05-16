@@ -15,7 +15,7 @@ class ArtistaModel {
     }
 
     public function get($id) {
-        $query = $this->db->prepare('SELECT * FROM artista WHERE id_artista = ?');
+        $query = $this->db->prepare('SELECT * FROM jugador WHERE id_artista = ?');
         $query->execute([$id]);
         $artista = $query->fetch(PDO::FETCH_OBJ);
         return $artista;
