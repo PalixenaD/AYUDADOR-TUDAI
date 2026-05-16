@@ -115,12 +115,12 @@ class AlbumController {
     }
 }
 
-     public function showAddForm() {
-        $this->albumview->showAddForm();
+     public function mostrarFormAddAlbum() {
+        $this->view->mostrarFormAdd();
     }
 
-    public function showEditForm($id_seleccion){
-        $album = $this->model->get($id_seleccion);
-        $this->albumview->showEditForm($album);
+    public function mostrarFormEditAlbum($id_album){
+        $album = $this->model->get($id_album);
+        $this->view->mostrarFormEdit($album);
     }
 
