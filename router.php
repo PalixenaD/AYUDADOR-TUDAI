@@ -41,14 +41,12 @@ switch ($params[0]) {
          $req->id = $params[1] ?? null;
     
          if ($req->id === null) {
-           return $this->errorView->renderError("Falta el id del artista");
-         break;
+           return $this->errorView->renderError("No se encuentra ese artista");
+         } else {
+           $controller = new ArtistaController();
+           $controller->seleccionarArtista($req);
+           break;
          }
-    
-         $controller = new ArtistaController();
-         $controller->seleccionarArtista($req);
-         break;
-
 
    case 'login_form':
         $controller = new AuthController();
@@ -59,6 +57,11 @@ switch ($params[0]) {
         $controller = new AuthController();
         $controller->login($req);
         break;
+
+   case 'logout':
+        $controller = new AuthController();
+        $controller->logout($req);
+        break; 
  
 
    case 'addAlbum':
