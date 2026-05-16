@@ -113,7 +113,6 @@ class AlbumController {
         
         header("Location: " . BASE_URL );        
     }
-}
 
      public function mostrarFormAddAlbum() {
         $this->view->mostrarFormAdd();
