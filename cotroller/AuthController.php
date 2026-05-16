@@ -1,6 +1,6 @@
 
 <?php
-require_once __DIR__ . '/../models/users.model.php';
+require_once __DIR__ . '/../models/auth.model.php';
 require_once __DIR__ . '/../views/auth.view.php';
 require_once __DIR__ . '/../views/error.view.php';
 
@@ -8,7 +8,7 @@ class AuthController {
     private $view;
     
     public function __construct() {
-        $this->model = new UsersModel();
+        $this->model = new AuthModel();
         $this->view = new AuthView();
         $this->errorView = new ErrorView();
     }
@@ -18,24 +18,24 @@ class AuthController {
     }
 
     public function login($req){
-        if(empty($_POST["email"]) || empty($_POST["password"]))
+        if(empty($_POST["usuario"]) || empty($_POST["password"]))
             return $this->view->showForm();
 
-        $email = $_POST["email"];
+        $usuario = $_POST["usuario"];
         $password = $_POST["password"];
 
-        $user = $this->model->getByEmail($email);
+        $user = $this->model->getUsuario($usuario);
 
-        if(!$user) {
+        if(!$usuario) {
             return $this->errorView->renderError("Usuario o contraseña incorrecta");
         }
 
-        if(!password_verify($password, $user->password)) {
+        if(!password_verify($password, $usuario->password)) {
             return $this->errorView->renderError("Usuario o contraseña incorrecta");
         }
 
         $_SESSION["id"] = $user->id;
-        $_SESSION["email"] = $user->email;
+        $_SESSION["usuario"] = $user->usuario;
 
         header("Location: ". BASE_URL);
     }
