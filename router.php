@@ -94,7 +94,7 @@ switch ($params[0]) {
         $req = (new GuardMiddleware())->run($req);
         $controller = new AlbumController();
         $req->id = $params[1];
-        $controller->mostrarFormAlbumEdit($req);
+        $controller->mostrarFormEditAlbum($req);
         break;
 
 
@@ -128,7 +128,7 @@ switch ($params[0]) {
         $req = (new GuardMiddleware())->run($req);
         $controller = new ArtistaController();
         $req->id = $params[1];
-        $controller->mostrarFormArtistaEdit($req);
+        $controller->mostrarFormEditArtista($req);
         break;
 
     default:
