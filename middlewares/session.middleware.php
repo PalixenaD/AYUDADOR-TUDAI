@@ -2,11 +2,11 @@
     class SessionMiddleware {
         public function run($req) {
             if (isset($_SESSION["id"])) {
-                $req->user = new StdClass();
-                $req->user->id = $_SESSION["id"];
-                $req->user->email = $_SESSION["email"];
+                $req->usuario = new StdClass();
+                $req->usuario->id = $_SESSION["id"];
+                $req->usuario->email = $_SESSION["email"];
             } else {
-                $req->user = null;
+                $req->usuario = null;
             }
             return $req;
         }
