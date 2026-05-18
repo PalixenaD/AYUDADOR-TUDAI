@@ -26,7 +26,7 @@ class AuthController {
 
         $user = $this->model->getByUsuario($usuario);
 
-        if(!$usuario) {
+        if(!$user) {
             return $this->errorView->renderError("Usuario o contraseña incorrecta");
         }
 
