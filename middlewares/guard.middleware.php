@@ -1,7 +1,7 @@
 <?php
     class GuardMiddleware {
         public function run($req) {
-            if (!$req->user) {
+            if (!$req->usuario) {
                 header("Location: ". BASE_URL . "login_form");
                 die();
             }
