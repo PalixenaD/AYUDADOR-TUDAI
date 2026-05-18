@@ -24,13 +24,13 @@ class AuthController {
         $usuario = $_POST["usuario"];
         $password = $_POST["password"];
 
-        $user = $this->model->getUsuario($usuario);
+        $user = $this->model->getByUsuario($usuario);
 
         if(!$usuario) {
             return $this->errorView->renderError("Usuario o contraseña incorrecta");
         }
 
-        if(!password_verify($password, $usuario->password)) {
+        if(!password_verify($password, $user->password)) {
             return $this->errorView->renderError("Usuario o contraseña incorrecta");
         }
 
