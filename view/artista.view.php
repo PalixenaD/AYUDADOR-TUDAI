@@ -2,12 +2,12 @@
 
 class ArtistaView {
     public function renderArtistas($artistas) {
-        require_once  'Views/templates/Artistas.phtml';
+        require_once  __DIR__   '/templates/Artistas.phtml';
     }
 
 
     public function showAlbumsporArtista ($albumes) {
-        require_once  'Views/templates/AlbumPorArtista.phtml';
+        require_once  __DIR__  '/templates/AlbumPorArtista.phtml';
     }
 }
 
