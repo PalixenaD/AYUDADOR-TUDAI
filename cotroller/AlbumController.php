@@ -14,14 +14,13 @@ class AlbumController {
         $this->errorView = new ErrorView();
     }
 
-    public function home() {
+    public function home($req) {
         $albumes = $this->model->getAll();
-
-        
+        $this->view->setUser($req->user); 
         $this->view->renderHome($albumes);
     }
 
-    public function mostrarAlbum($id) {
+    public function mostrarAlbum($req, $id) {
         $album = $this->model->get($id);
 
         if ($album === null) {
@@ -114,11 +113,11 @@ class AlbumController {
         header("Location: " . BASE_URL );        
     }
 
-     public function mostrarFormAddAlbum() {
+     public function mostrarFormAddAlbum($req) {
         $this->view->mostrarFormAdd();
     }
 
-    public function mostrarFormEditAlbum($id_album){
+    public function mostrarFormEditAlbum($req, $id_album){
         $album = $this->model->get($id_album);
         $this->view->mostrarFormEdit($album);
     }
