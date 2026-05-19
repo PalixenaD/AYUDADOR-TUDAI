@@ -39,4 +39,9 @@ class AuthController {
 
         header("Location: ". BASE_URL);
     }
+
+    public function logout($req){
+        session_destroy();
+        header("Location: " . BASE_URL);
+    }
 }
