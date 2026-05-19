@@ -14,13 +14,14 @@ class ArtistaController {
         $this->errorView = new ErrorView();
 
 
-    public function  mostrarArtistas() {
+    public function  mostrarArtistas($req) {
       $artistas = $this->model->getAll();
+      $this->view->setUser($req->user);  
       $this->view->renderArtistas($artistas);
     }
 
-      public function seleccionarArtista($id) {
-        $albumes = $this->model->get($id);
+      public function seleccionarArtista($req, $id) {
+        $albumes = $this->model->get($id);  
         $this->view->showAlbumsporArtista($albumes);
     }
 
@@ -84,7 +85,7 @@ class ArtistaController {
         $lugar_origen = $_POST['lugar_origen'];
         
 
-        $this = $this->model->editArtista($id_artista, $nombre_artista, $fecha_nacimiento, $fecha_fallecimiento, $lugar_origen);
+        $this = $this->model->update($id_artista, $nombre_artista, $fecha_nacimiento, $fecha_fallecimiento, $lugar_origen);
 
         if (empty($id)) {
             return $this->errorView->renderError("Error al agregar la artista. Intente nuevamente.");
@@ -94,11 +95,11 @@ class ArtistaController {
     }
 
 
-    public function mostrarFormAddArtista() {
+    public function mostrarFormAddArtista($req) {
         $this->view->mostrarFormAdd();
     }
 
-    public function mostrarFormEditArtista($id_artista){
+    public function mostrarFormEditArtista($req, $id_artista){
         $artista = $this->model->get($id_artista);
         $this->view->mostrarFormEdit($artista);
     }
