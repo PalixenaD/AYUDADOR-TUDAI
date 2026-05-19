@@ -13,7 +13,7 @@ class AuthController {
         $this->errorView = new ErrorView();
     }
     
-    public function showForm($req){
+    public function mostrarFormLogin($req){
         $this->view->showForm();
     }
 
@@ -24,7 +24,7 @@ class AuthController {
         $usuario = $_POST["usuario"];
         $password = $_POST["password"];
 
-        $user = $this->model->getByUsuario($usuario);
+        $user = $this->model->getUsuario($usuario);
 
         if(!$user) {
             return $this->errorView->renderError("Usuario o contraseña incorrecta");
@@ -34,8 +34,8 @@ class AuthController {
             return $this->errorView->renderError("Usuario o contraseña incorrecta");
         }
 
-        $_SESSION["id"] = $user->id;
-        $_SESSION["usuario"] = $user->usuario;
+        $_SESSION["id"] = $user->id_usuario;
+        $_SESSION["usuario"] = $user->nombre_usuario;
 
         header("Location: ". BASE_URL);
     }
