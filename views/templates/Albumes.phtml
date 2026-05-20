@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Albums</title>
+    <link rel="stylesheet" href="css/Homestyle.css">
+</head>
+<body>
+
+    <h1>Todos los Álbumes</h1>
+
+    <section class="album-container">
+
+        <?php foreach($albumes as $album): ?>
+
+            <div class="album-card">
+
+                <img src="img/<?= $album->imagen ?>" //cambiar segun la base de datos
+                     alt="<?= $album->nombre ?>"> //poner segun la BD
+
+                <h2><?= $album->nombre ?></h2>
+
+                <p><?= $album->anio ?></p>
+
+                <a href="artist/<?= $album->artista_id ?>">
+                    <?= $album->artista_nombre ?>
+                </a>
+
+            </div>
+
+        <?php endforeach; ?>
+
+    </section>
+
+</body>
+</html>

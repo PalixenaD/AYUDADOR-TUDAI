@@ -1,7 +1,7 @@
 <?php
-require_once __DIR__ . '/app/cotroller/AlbumController.php';
-require_once __DIR__ . '/app/cotroller/ArtistaController.php';
-require_once __DIR__ . '/app/view/error.view.php';
+require_once __DIR__ . '/app/controllers/album.controller.php';
+require_once __DIR__ . '/app/controllers/artista.controller.php';
+require_once __DIR__ . '/app/views/error.view.php';
 require_once __DIR__ . '/app/middlewares/session.middleware.php';
 require_once __DIR__ . '/app/middlewares/guard.middleware.php';
 
